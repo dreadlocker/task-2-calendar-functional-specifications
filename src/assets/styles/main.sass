@@ -1,0 +1,120 @@
+@import "./_variables.sass"
+
+body
+  margin: 0
+
+#app
+  font-family: Avenir, Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  text-align: center
+  
+// globel classes START
+.max-width
+  width: $max-width
+  margin: 10px auto
+.fade
+  opacity: 0.3
+  pointer-events: none
+  cursor: default
+.danger
+  border-color: red
+.bold
+  font-weight: bold
+// globel classes END
+
+.events-holder-parent
+  height: 70px
+  padding: 0 2%
+  background-color: $events-holder-background-color
+  box-shadow: 0px 3px darken($events-holder-background-color, 10)
+  display: flex
+.events-holder
+  display: flex
+  justify-content: space-between
+  align-items: center
+.btn
+  cursor: pointer
+  &:active
+    transform: scale(1.1)
+.events-btn
+  background-color: $btns-background-color
+  color: white
+  border: none
+  padding: $events-holder-input-btns-text-padding #{$events-holder-input-btns-text-padding * 2}
+.margin-right
+  margin-right: $margin-left-or-right
+.input
+  padding: $events-holder-input-btns-text-padding
+
+.calendar-header
+  height: 27px
+  display: flex
+  align-items: center
+.calendar-header-prev-next-btns
+  display: flex
+  justify-content: center
+  align-items: center
+.current-date
+  width: 155px
+  font-size: 20px
+  font-weight: bold
+.calendar-header-elements-margin-right
+  margin-right: $calendar-header-elements-margin-right
+.today-btn
+  height: inherit
+  padding: 0 10px
+
+.calendar-holder
+  display: flex
+  flex-wrap: wrap
+.clickable-day
+  cursor: pointer
+  &:hover
+    background-color: $btns-background-color
+.day-holder
+  width: $day-holder-dimensions
+  height: $day-holder-dimensions
+  padding: $day-holder-padding
+  text-align: left
+  font-size: 11px
+  border: $day-holder-border-dimensions solid $events-holder-background-color
+.border-highlight
+  border: 1px solid #d2d200 !important
+  box-shadow: 2px 2px #d2d200
+.day-header
+  color: $events-holder-background-color
+.event-header
+  padding: 5px 0
+  font-weight: 900
+  word-wrap: break-word
+.event-info
+  word-wrap: break-word
+
+.event-modal
+  width: 400px
+  position: absolute
+  top: 20%
+  left: calc( 50% - (400px / 2) )
+  border: 3px solid $events-holder-background-color
+  z-index: 1
+  padding: 20px 30px
+  display: flex
+  flex-direction: column
+.modal-close-btn
+  color: red
+  font-weight: 900
+  font-size: 20px
+  text-align: right
+  padding-bottom: 20px
+  cursor: pointer
+  &:active
+    font-size: 23px
+.margin-bottom
+  margin-bottom: 10px
+.save-event-btn
+  width: 50%
+  margin: auto
+
+.separate-rows
+  padding-bottom: 30px
