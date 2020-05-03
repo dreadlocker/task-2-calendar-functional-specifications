@@ -46,7 +46,7 @@
         <BaseCalendarDay
           v-for="(arr, index) in daysForCurrentMonthArray()"
           :key="index"
-          :dayString="index < 7 ? `${daysStringArray[index]}, ` : ''"
+          :dayString="index < daysStringArray.length ? `${daysStringArray[index]}, ` : ''"
           :dayArray="arr"
           @closeShownEventModal="closeShownEventModalMethod"
         />
@@ -113,11 +113,13 @@ export default {
       isShowEventModalOpen: false,
       keyFromChild: "",
       calendarDayClicked: "",
+      daysCountForEveryMonth: 42
     };
   },
   methods: {
     daysForCurrentMonthArray() {
       let currentMonthDay1Index = new Date(this.currentYear, this.currentMonthIndex).getDay();
+      console.log(currentMonthDay1Index);
       currentMonthDay1Index = currentMonthDay1Index === 0 ? 7 : currentMonthDay1Index;
       const previousMonthName = new Date(this.currentYear, this.previousMonthIndex).toLocaleString("default", { month: "long" });
       const previousMonthYear = this.nextMonthIndex === 1 ? this.currentYear - 1: this.currentYear;
@@ -133,7 +135,7 @@ export default {
         ? []
         : this.generateDaysForMonthArray(`${previousMonthName} ${previousMonthYear}`, previousMonthTotalDays, (currentMonthDay1Index - 1));
       const currentMonthArray = this.generateDaysForMonthArray(`${currentMonthName} ${currentMonthYear}`, currentMonthTotalDays);
-      const nextMonthArray = this.generateDaysForMonthArray(`${nextMonthName} ${nextMonthYear}`, nextMonthTotalDays, 0, (42 - currentMonthTotalDays - currentMonthDay1Index + 1));
+      const nextMonthArray = this.generateDaysForMonthArray(`${nextMonthName} ${nextMonthYear}`, nextMonthTotalDays, 0, (this.daysCountForEveryMonth - currentMonthTotalDays - currentMonthDay1Index + 1));
 
       return [
         ...previousMonthArray,
@@ -203,9 +205,9 @@ export default {
         resultArray.push({day: i, event: currentEventArray});
       }
 
-      if (resultArray.length < 42) {
+      if (resultArray.length < this.daysCountForEveryMonth) {
         const nextMonthIndex = new Date(this.currentYear, this.currentMonthIndex + 1).getMonth() + 1;
-        for (let i = 1; resultArray.length < 42; i++) {
+        for (let i = 1; resultArray.length < this.daysCountForEveryMonth; i++) {
           const keyToCheck = `${this.currentYear}-${nextMonthIndex < 10 ? `0${nextMonthIndex}` : nextMonthIndex}-${i < 10 ? `0${i}` : i}`;
           let currentEventArray = [];
           if(localStorageKeysArray.includes(keyToCheck)) {
