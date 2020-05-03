@@ -119,7 +119,6 @@ export default {
   methods: {
     daysForCurrentMonthArray() {
       let currentMonthDay1Index = new Date(this.currentYear, this.currentMonthIndex).getDay();
-      console.log(currentMonthDay1Index);
       currentMonthDay1Index = currentMonthDay1Index === 0 ? 7 : currentMonthDay1Index;
       const previousMonthName = new Date(this.currentYear, this.previousMonthIndex).toLocaleString("default", { month: "long" });
       const previousMonthYear = this.nextMonthIndex === 1 ? this.currentYear - 1: this.currentYear;
